@@ -4,13 +4,23 @@ btn.addEventListener("click", function (e) {
   let txt = document.getElementById("addtxt");
   let title = document.getElementById("addtitle");
 
+  if ($("#addtitle").val().length <= 5) {
+    alert("Title Should be more than 5 chacters");
+    return false;
+  }
+  if ($("#addtxt").val().length <= 5) {
+    alert("Description Should be more than 5 chacters");
+    return false;
+  }
+
   let R = localStorage.getItem("R");
-  //console.log(R)
+  console.log(R);
   if (R == null) {
     newObj = [];
   } else {
     newObj = JSON.parse(R);
   }
+
   let myObj = {
     title: title.value,
     txt: txt.value,
@@ -36,9 +46,9 @@ function seenote() {
   newObj.forEach(function (element, index) {
     html += `  <div class="notecard card" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">${element.title} </h5>
+            <h5 class="card-title jsTitle">${element.title} </h5>
             <hr>
-            <p class="card-text">${element.txt}</p>
+            <p class="card-text jsDescription">${element.txt}</p>
             <button href="#" id=${index} onclick='D(this.id)' class="btn btn-primary">DELETE</button>
         </div>
     </div>`;
@@ -47,7 +57,7 @@ function seenote() {
   if (html != 0) {
     allnote.innerHTML = html;
   } else {
-    allnote.innerHTML = "Enter your Notes : )";
+    allnote.innerHTML = "Enter your ToDoList : )";
   }
 }
 
@@ -59,27 +69,28 @@ function D(index) {
   } else {
     newObj = JSON.parse(R);
   }
+  console.log(newObj, index);
   newObj.splice(index, 1);
 
   localStorage.setItem("R", JSON.stringify(newObj));
   seenote();
 }
 
-let search = document.getElementById("searchtxt");
-search.addEventListener("input", () => {
-  let input = search.value;
-  console.log(input);
-  let notecard = document.getElementsByClassName("notecard");
+// let search = document.getElementById("searchtxt");
+// search.addEventListener("input", () => {
+//   let input = search.value;
+//   console.log(input);
+//   let notecard = document.getElementsByClassName("notecard");
 
-  Array.from(notecard).forEach((element) => {
-    let cardtxt = element.getElementsByTagName("h5")[0].innerText;
-    console.log(cardtxt);
-    if (cardtxt.includes(input)) {
-      element.style.disply = "block";
-      console.log("block");
-    } else {
-      element.style.disply = "none";
-      console.log("block");
-    }
-  });
-});
+//   Array.from(notecard).forEach((element) => {
+//     let cardtxt = element.getElementsByTagName("h5")[0].innerText;
+//     console.log(cardtxt);
+//     if (cardtxt.includes(input)) {
+//       element.style.disply = "block";
+//       console.log("block");
+//     } else {
+//       element.style.disply = "none";
+//       console.log("block");
+//     }
+//   });
+// });
