@@ -75,22 +75,3 @@ function D(index) {
   localStorage.setItem("R", JSON.stringify(newObj));
   seenote();
 }
-
-// let search = document.getElementById("searchtxt");
-// search.addEventListener("input", () => {
-//   let input = search.value;
-//   console.log(input);
-//   let notecard = document.getElementsByClassName("notecard");
-
-//   Array.from(notecard).forEach((element) => {
-//     let cardtxt = element.getElementsByTagName("h5")[0].innerText;
-//     console.log(cardtxt);
-//     if (cardtxt.includes(input)) {
-//       element.style.disply = "block";
-//       console.log("block");
-//     } else {
-//       element.style.disply = "none";
-//       console.log("block");
-//     }
-//   });
-// });
